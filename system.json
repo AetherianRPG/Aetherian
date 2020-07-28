@@ -1,45 +1,45 @@
 {
-    "name": "aetherian",
-    "title": "Ætherian",
-    "description": "O sistema Ætherian agora para o Foundry VTT",
-    "version": "0.0.1",
-    "author": "Arazyel",
+    "name": "demonlord",
+    "title": "Shadow of the Demon Lord",
+    "description": "The Shadow of the Demonlord system for FoundryVTT",
+    "version": "1.0.3",
+    "author": "Bo Kehlet",
     "minimumCoreVersion": "0.6",
     "compatibleCoreVersion": "0.6.4",
     "esmodules": [
-        "module/aetherian.js"
+        "module/demonlord.js"
     ],
     "styles": [
-        "css/aetherian.css",
-        "css/aetherian2.css"
+        "css/demonlord.css",
+        "css/demonlord2.css"
     ],
     "scripts": [],
     "packs": [
         {
             "name": "weapons",
             "label": "Weapons",
-            "system": "aetherian",
+            "system": "demonlord",
             "path": "packs/weapons.db",
             "entity": "Item"
         },
         {
             "name": "armor",
             "label": "Armor",
-            "system": "aetherian",
+            "system": "demonlord",
             "path": "packs/armor.db",
             "entity": "Item"
         },
         {
             "name": "ammunition",
             "label": "Ammunition",
-            "system": "aetherian",
+            "system": "demonlord",
             "path": "packs/ammunition.db",
             "entity": "Item"
         },
         {
             "name": "weapons creature",
             "label": "Weapons Creature",
-            "system": "aetherian",
+            "system": "demonlord",
             "path": "packs/weapons-creatures.db",
             "entity": "Item"
         }
@@ -61,7 +61,7 @@
     "primaryTokenAttribute": "characteristics.health",
     "secondaryTokenAttribute": "",
     "socket": true,
-    "url": "https://github.com/AetherianRPG/Aetherian",
-    "manifest": "https://raw.githubusercontent.com/AetherianRPG/Aetherian/master/system.json",
-    "download": "https://github.com/AetherianRPG/Aetherian/archive/master.zip"
+    "url": "https://github.com/Xacus/demonlord",
+    "manifest": "https://raw.githubusercontent.com/Xacus/demonlord/master/system.json",
+    "download": "https://github.com/Xacus/demonlord/archive/master.zip"
 }
