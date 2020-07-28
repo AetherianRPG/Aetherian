@@ -3,25 +3,25 @@ import {
     DL
 } from "./config.js";
 import {
-    DemonlordActor
+    AetherianActor
 } from "./actor/actor.js";
 import {
-    DemonlordActorSheet
+    AetherianActorSheet
 } from "./actor/actor-sheet.js";
 import {
-    DemonlordActorSheet2
+    AetherianActorSheet2
 } from "./actor/actor-sheet2.js";
 import {
-    DemonlordCreatureSheet
+    AetherianCreatureSheet
 } from "./actor/creature-sheet.js";
 import {
-    DemonlordItem
+    AetherianItem
 } from "./item/item.js";
 import {
-    DemonlordItemSheet
+    AetherianItemSheet
 } from "./item/item-sheet.js";
 import {
-    DemonlordItemSheet2
+    AetherianItemSheet2
 } from "./item/item-sheet2.js";
 import {
     registerSettings
@@ -35,9 +35,9 @@ import combattracker from './combattracker.js';
 import { CharacterBuff } from './buff.js';
 
 Hooks.once('init', async function () {
-    game.demonlord = {
-        DemonlordActor,
-        DemonlordItem,
+    game.aetherian = {
+        AetherianActor,
+        AetherianItem,
         rollWeaponMacro,
         rollTalentMacro,
         rollSpellMacro,
@@ -54,33 +54,33 @@ Hooks.once('init', async function () {
     Combat.prototype.setupTurns = setupTurns;
     Combat.prototype.startCombat = startCombat;
 
-    CONFIG.Actor.entityClass = DemonlordActor;
-    CONFIG.Item.entityClass = DemonlordItem;
+    CONFIG.Actor.entityClass = AetherianActor;
+    CONFIG.Item.entityClass = AetherianItem;
     CONFIG.ui.combat = combattracker;
 
     registerSettings();
 
     // Register sheet application classes
     Actors.unregisterSheet("core", ActorSheet);
-    Actors.registerSheet("demonlord", DemonlordActorSheet, {
+    Actors.registerSheet("aetherian", AetherianActorSheet, {
         types: ['character'],
         makeDefault: false
     });
-    Actors.registerSheet("demonlord", DemonlordActorSheet2, {
+    Actors.registerSheet("aetherian", AetherianActorSheet2, {
         types: ['character'],
         makeDefault: true
     });
 
-    Actors.registerSheet("demonlord", DemonlordCreatureSheet, {
+    Actors.registerSheet("aetherian", AetherianCreatureSheet, {
         types: ['creature'],
         makeDefault: true
     });
 
     Items.unregisterSheet("core", ItemSheet);
-    Items.registerSheet("demonlord", DemonlordItemSheet, {
+    Items.registerSheet("aetherian", AetherianItemSheet, {
         makeDefault: false
     });
-    Items.registerSheet("demonlord", DemonlordItemSheet2, {
+    Items.registerSheet("aetherian", AetherianItemSheet2, {
         makeDefault: true
     });
 
@@ -108,25 +108,25 @@ Hooks.once('init', async function () {
 
 async function preloadHandlebarsTemplates() {
     const templatePaths = [
-        "systems/demonlord/templates/tabs/character.html",
-        "systems/demonlord/templates/tabs/combat.html",
-        "systems/demonlord/templates/tabs/talents.html",
-        "systems/demonlord/templates/tabs/magic.html",
-        "systems/demonlord/templates/tabs/item.html",
-        "systems/demonlord/templates/tabs/background.html",
-        "systems/demonlord/templates/chat/challenge.html",
-        "systems/demonlord/templates/chat/combat.html",
-        "systems/demonlord/templates/chat/talent.html",
-        "systems/demonlord/templates/chat/spell.html",
-        "systems/demonlord/templates/chat/description.html",
-        "systems/demonlord/templates/chat/showtalent.html"
+        "systems/aetherian/templates/tabs/character.html",
+        "systems/aetherian/templates/tabs/combat.html",
+        "systems/aetherian/templates/tabs/talents.html",
+        "systems/aetherian/templates/tabs/magic.html",
+        "systems/aetherian/templates/tabs/item.html",
+        "systems/aetherian/templates/tabs/background.html",
+        "systems/aetherian/templates/chat/challenge.html",
+        "systems/aetherian/templates/chat/combat.html",
+        "systems/aetherian/templates/chat/talent.html",
+        "systems/aetherian/templates/chat/spell.html",
+        "systems/aetherian/templates/chat/description.html",
+        "systems/aetherian/templates/chat/showtalent.html"
     ];
     return loadTemplates(templatePaths);
 }
 
 Hooks.once("ready", async function () {
     // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
-    Hooks.on("hotbarDrop", (bar, data, slot) => createDemonlordMacro(data, slot));
+    Hooks.on("hotbarDrop", (bar, data, slot) => createAetherianMacro(data, slot));
 });
 
 /**
@@ -341,7 +341,7 @@ Hooks.on('preUpdateToken', async (scene, token, updateData, options) => {
     }
 });
 
-Hooks.on("renderChatLog", (app, html, data) => DemonlordItem.chatListeners(html));
+Hooks.on("renderChatLog", (app, html, data) => AetherianItem.chatListeners(html));
 
 /* -------------------------------------------- */
 /*  Hotbar Macros                               */
@@ -354,7 +354,7 @@ Hooks.on("renderChatLog", (app, html, data) => DemonlordItem.chatListeners(html)
  * @param {number} slot     The hotbar slot to use
  * @returns {Promise}
  */
-async function createDemonlordMacro(data, slot) {
+async function createAetherianMacro(data, slot) {
     if (data.type !== "Item") return;
     if (!("data" in data)) return ui.notifications.warn("You can only create macro buttons for owned Items");
     const item = data.data;
@@ -363,13 +363,13 @@ async function createDemonlordMacro(data, slot) {
     let command;
     switch (item.type) {
         case 'weapon':
-            command = `game.demonlord.rollWeaponMacro("${item.name}");`;
+            command = `game.aetherian.rollWeaponMacro("${item.name}");`;
             break;
         case 'talent':
-            command = `game.demonlord.rollTalentMacro("${item.name}");`;
+            command = `game.aetherian.rollTalentMacro("${item.name}");`;
             break;
         case 'spell':
-            command = `game.demonlord.rollSpellMacro("${item.name}");`;
+            command = `game.aetherian.rollSpellMacro("${item.name}");`;
             break;
         default:
             break;
@@ -383,7 +383,7 @@ async function createDemonlordMacro(data, slot) {
             img: item.img,
             command: command,
             flags: {
-                "demonlord.itemMacro": true
+                "aetherian.itemMacro": true
             }
         });
     }
@@ -519,7 +519,7 @@ function healingPotionMacro() {
             }
         };
 
-        let template = 'systems/demonlord/templates/chat/useitem.html';
+        let template = 'systems/aetherian/templates/chat/useitem.html';
         renderTemplate(template, templateData).then(content => {
             chatData.content = content;
             ChatMessage.create(chatData);
@@ -557,7 +557,7 @@ function requestRollMacro() {
 
         chatData["whisper"] = ChatMessage.getWhisperRecipients("GM");
 
-        let template = 'systems/demonlord/templates/chat/requestroll.html';
+        let template = 'systems/aetherian/templates/chat/requestroll.html';
         renderTemplate(template, templateData).then(content => {
             chatData.content = content;
             ChatMessage.create(chatData);
