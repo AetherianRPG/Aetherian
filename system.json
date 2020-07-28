@@ -1,9 +1,9 @@
 {
     "name": "demonlord",
-    "title": "Shadow of the Demon Lord",
-    "description": "The Shadow of the Demonlord system for FoundryVTT",
-    "version": "1.0.3",
-    "author": "Bo Kehlet",
+    "title": "Ætherian",
+    "description": "Ætherian RPG agora para FoundryVTT",
+    "version": "0.0.1",
+    "author": "Arazyel",
     "minimumCoreVersion": "0.6",
     "compatibleCoreVersion": "0.6.4",
     "esmodules": [
