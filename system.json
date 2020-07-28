@@ -1,7 +1,7 @@
 {
     "name": "aetherian",
     "title": "Ætherian",
-    "description": "Ætherian RPG agora para FoundryVTT",
+    "description": "Ætherian RPG agora para o FoundryVTT",
     "version": "0.0.1",
     "author": "Arazyel",
     "minimumCoreVersion": "0.6",
